@@ -1,0 +1,18 @@
+# =========================
+# Ignorar do Python
+# =========================
+__pycache__/
+venv/
+env/
+.env
+*.pyc
+
+# =========================
+# Ignorar do Flutter
+# =========================
+.dart_tool/
+build/
+.packages
+.pub-cache/
+.pub/
+/front/android/app/src/main/res/mipmap-*/
