@@ -59,12 +59,17 @@ async def extrair_arquivo(file: UploadFile = File(...)):
         print("[PYTHON] 6. Procurando CPF e RG no texto extraido...")
         padrao_cpf = r'\d{3}\.?\d{3}\.?\d{3}-?\d{2}'
         padrao_rg = r'\d{2}\.?\d{3}\.?\d{3}-?[\dXx]{1}'
+        padrao_cnpj = r'\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2}'
 
         resultado_cpf = re.search(padrao_cpf, texto_extraido)
         resultado_rg = re.search(padrao_rg, texto_extraido)
+        cnpj_encontrado = re.search(padrao_cnpj, texto_extraido)
 
         cpf_final = resultado_cpf.group() if resultado_cpf else "CPF Nao Encontrado"
         rg_final = resultado_rg.group() if resultado_rg else "RG Nao Encontrado"
+        cnpj_final = cnpj_encontrado.group() if cnpj_encontrado else "CNPJ Nao Encontrado"
+        
+   
 
         # 6. Retorna o JSON de volta para o Flutter
         print(f"[PYTHON] 7. SUCESSO! Dados extraidos: CPF {cpf_final} | RG {rg_final}")
@@ -76,6 +81,7 @@ async def extrair_arquivo(file: UploadFile = File(...)):
             "tipo_documento": "CNH / Documento Pessoal",
             "cpf": cpf_final,
             "rg": rg_final,
+            "cnpj": cnpj_final,
             "status_validacao": "pendente_de_analise"
         }
 
