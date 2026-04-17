@@ -38,7 +38,7 @@ async def extrair_arquivo(file: UploadFile = File(...)):
         
         # 2. Converte o PDF em imagem (Avisando onde está o Poppler no Windows)
         print("[PYTHON] 3. Convertendo PDF para imagem com Poppler...")
-        paginas = convert_from_bytes(conteudo_pdf, poppler_path=r'C:\poppler\Library\bin')
+        paginas = convert_from_bytes(conteudo_pdf)
         primeira_pagina = paginas[0]
 
         # 3. Visão Computacional (Separação do canal verde e limpeza)
